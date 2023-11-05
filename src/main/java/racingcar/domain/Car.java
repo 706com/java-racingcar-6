@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import static racingcar.service.NumberRange.*;
 
 public class Car {
     private String name;
@@ -8,10 +9,6 @@ public class Car {
     private int RemainingOpportunity;
 
     private int movementScore;
-
-    private static final int START_NUMBER = 0;
-    private static final int END_NUMBER = 9;
-    private static final int POSSIBLE_TO_MOVE_NUMBER = 4;
 
     public Car(String name, int movementOpportunity) {
         this.name = name;
@@ -23,7 +20,7 @@ public class Car {
         if(!checkRemainingOpportunity()) {
             return;
         }
-        if(pickRandomNumberToMove()>=POSSIBLE_TO_MOVE_NUMBER) {
+        if(pickRandomNumberToMove()>= POSSIBLE_TO_MOVE_NUMBER.getValue()) {
             this.movementScore++;
         }
         this.RemainingOpportunity--;
@@ -38,7 +35,7 @@ public class Car {
 
 
     protected int pickRandomNumberToMove(){
-        return Randoms.pickNumberInRange(START_NUMBER,END_NUMBER);
+        return Randoms.pickNumberInRange(START_NUMBER.getValue(),END_NUMBER.getValue());
     }
 
     public String getName(){
